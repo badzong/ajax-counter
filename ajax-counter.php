@@ -9,7 +9,7 @@
  */
 
 // Ajax URL
-add_action('wp_head', function () {
+add_action('wp_footer', function () {
 	if ( is_single(get_the_ID()) ): ?>
    	<script>
 		document.addEventListener('DOMContentLoaded', function(){ 
