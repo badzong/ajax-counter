@@ -15,7 +15,7 @@ add_action('wp_head', function () {
 		document.addEventListener('DOMContentLoaded', function(){ 
 			jQuery.post(
 				"<?php echo admin_url('admin-ajax.php'); ?>",
-				{ 'action': 'ajax_counter', 'post_type': 'POST', 'post_id': <?php echo get_the_ID(); ?> }
+				{ 'action': 'ajax_counter', 'post_type': 'POST', 'post_id': '<?php echo get_the_ID(); ?>', '_ajax_nonce': '<?php echo wp_create_nonce(); ?>' }
 			);
 		}, false);
 	</script>
@@ -29,11 +29,12 @@ function ajax_counter() {
 	$postmeta = $wpdb->postmeta;
 	$meta_key = 'ajax_counter_views';
 
-        if ( !array_key_exists('post_id', $_POST) ) {
+	if ( !check_ajax_referer() || !array_key_exists('post_id', $_POST) ) {
 		echo 'ERROR';
                 exit;
         }
 
+	// SECURITY: Make sure post_id is in fact an id.
         $post_id = trim($_POST['post_id']);
         if ( !preg_match('/^[0-9]+$/', $post_id) ) {
 		echo 'ERROR';
