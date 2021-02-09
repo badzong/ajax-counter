@@ -1,0 +1,18 @@
+{
+  "name": "badzong/ajax-counter",
+  "type": "wordpress-plugin",
+  "description": "AJAX based view counter for Wordpress",
+  "version": "1.0.0",
+  "license": "MIT",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/badzong/ajax-counter"
+    }
+  ]
+}
