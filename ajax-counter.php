@@ -13,10 +13,12 @@ add_action('wp_footer', function () {
 	if ( is_single(get_the_ID()) ): ?>
    	<script>
 		document.addEventListener('DOMContentLoaded', function(){ 
-			jQuery.post(
-				"<?php echo admin_url('admin-ajax.php'); ?>",
-				{ 'action': 'ajax_counter', 'post_type': 'POST', 'post_id': '<?php echo get_the_ID(); ?>', '_ajax_nonce': '<?php echo wp_create_nonce(); ?>' }
-			);
+			 window.setTimeout(function() {
+				jQuery.post(
+					"<?php echo admin_url('admin-ajax.php'); ?>",
+					{ 'action': 'ajax_counter', 'post_type': 'POST', 'post_id': '<?php echo get_the_ID(); ?>', '_ajax_nonce': '<?php echo wp_create_nonce(); ?>' }
+				);
+			}, 3000);
 		}, false);
 	</script>
 <?php endif; });
