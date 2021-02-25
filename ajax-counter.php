@@ -30,6 +30,7 @@ add_action('wp_footer', function () {
 		document.addEventListener('DOMContentLoaded', function(){ 
 			ajax_counter_post();
 			ajax_counter_post(10);
+			ajax_counter_post(30);
 		}, false);
 	</script>
 <?php endif; });
@@ -54,10 +55,16 @@ function ajax_counter() {
                 exit;
         }
 
+	// SECURITY: Only allow given delays
 	$delay = array_key_exists('delay', $_POST)? intval($_POST['delay']): 0;
-	if ($delay != 0 && $delay != 10) {
-		echo "ERROR: delay=$delay";
-                exit;
+	switch ($delay) {
+		case 0:
+		case 10:
+		case 30:
+			break;
+		defaul;
+			echo "ERROR: delay=$delay";
+                	exit;
 	}
 
 	if ( $delay ) {
