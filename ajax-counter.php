@@ -28,8 +28,8 @@ add_action('wp_footer', function () {
 		}
 
 		document.addEventListener('DOMContentLoaded', function(){ 
-			ajax_counter_post();
-			ajax_counter_post(10);
+			//ajax_counter_post();
+			//ajax_counter_post(10);
 			ajax_counter_post(30);
 		}, false);
 	</script>
